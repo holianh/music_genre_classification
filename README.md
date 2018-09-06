@@ -33,7 +33,7 @@ Code train và predict cho mõi model nằm trong thư mục [model]/src, trong 
 
 # Bước 1: train lần 1
 
-Train trên 2 fold 0,1, sử dụng 3 base model là densenet201, inception_v3, densenet169 (đơn giản 3 thằng này số lượng parameters ít nên train nhanh vl). Khi hội tụ val_acc của tập valid đã phân rã thành các ảnh nhỏ là tầm 0.6996 (^_^). Sau khi gom lại (predict mỗi ảnh nhỏ được probs 1x10, prob file 2ph = average ảnh nhỏ, chọn class có prob lớn nhất) thì val_acc tầm 0.79. Mình predict cho tập public test thì LB là 0.78.
+Train trên 2 fold 0,1, sử dụng 3 base model là densenet201, inception_v3, densenet169 (chọn 3 thằng này vì số lượng parameters ít nên train nhanh). Khi hội tụ val_acc của tập valid đã phân rã thành các ảnh nhỏ là tầm 0.6996 (^_^). Sau khi gom lại (predict mỗi ảnh nhỏ được probs 1x10, prob file 2ph = average ảnh nhỏ, chọn class có prob lớn nhất) thì val_acc tầm 0.79. Mình predict cho tập public test thì LB là 0.78.
 
 # Bước 2: stacking lần 1
 
