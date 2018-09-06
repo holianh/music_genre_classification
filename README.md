@@ -51,7 +51,7 @@ Predict cho cả 3 tập train + pseudo test, validation, public test trên các
 
 - Tạo 1 lgb model với input shape là 1x60, output shape là 1x10. Gọi bé này là lgb_stacking1
 
-# Bước 5 đánh bừa trọng số :v
+# Bước 5: đánh bừa trọng số :v
 
 Đánh trọng số cho thằng cnn_staking1 là 0.45, cnn_stacking2 là 0.45 và bé lgb_stacking1 là 0.1
 
