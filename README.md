@@ -39,11 +39,11 @@ Train trên 2 fold 0,1, sử dụng 3 base model là densenet201, inception_v3, 
 
 Predict cho cả 3 tập train, validation, public test trên các ảnh nhỏ, gom lại tương ứng với file lớn, thu được một 3 matrix có shape: train_sizex10, valid_sizex10, test_sizex10. Xếp chồng kết quả của 3 model theo chiều ngang được 3 matrix train_sizex3x10, valid_sizex3x10, test_sizex3x10. Tạo 1 model cnn đơn giản với input shape là 3x10, output shape là 1x10, các lớp cnn có kernel size là 2x1 [kiểu thay vì cộng trung bình thì đê cho thằng cnn tự tính tỉ lệ tốt nhất giữa 3 model]. Val_acc sau stack cho mỗi fold 0 và 1 khoảng 0.808. Cộng trung bình cho 2 fold 0 và 1, mình submit thì LB trên public test là 0.802
 
-# Bước 3 pseudo labeling
+# Bước 3: pseudo labeling
 
 Lúc này LB là 0.802 có nghĩa predict trên bộ public test có độ chính xác 80%. Chọn trên bộ public test các file có xác suất > 85%, đưa vào tập train train tiếp. Vi không có thời gian nên mình sử dụng 3 fold còn lại 2,3,4 để train với tập train + pseudo test set này. Tiến hành train giống bước 1, nhưng lần này train với cả 6 model, val_acc cho tập ảnh sau khi phân rã của mỗi model lúc này boost từ 0.6996 lên được 0.72.
 
-# Bước 4 Stacking lần 2
+# Bước 4: stacking lần 2
 
 Predict cho cả 3 tập train + pseudo test, validation, public test trên các ảnh nhỏ, gom lại tương ứng với file lớn, thu được một 3 matrix có shape: (train_size_pseudo_size)x10, valid_sizex10, test_sizex10. Xếp chồng kết quả của 6 model theo chiều ngang được 3 matrix (train_size_pseudo_size)x6x10, valid_sizex6x10, test_sizex6x10.
 
@@ -60,7 +60,7 @@ Kết quả cuối = 0.45 x cnn_stacking1 + 0.45 x cnn_stacking2 + 0.1 x lgb_sta
 Kết quả LB của tập publict test là 0.81593
 
 
-Sau khi có tập private test thì final LB là 0.70144. Mình nghĩ distribution của bộ private và public test có thể hơi khác, việc xuất hiện một số file dưới 2ph mình cũng thấy hơi ngờ ngợ. Nhưng kệ cứ tin vào val_acc trên CV của mình và đợi kết quả cuối cùng, Cũng may là vẫn TOP1 ^^.
+Sau khi có tập private test thì final LB là 0.70144. Mình nghĩ distribution của bộ private và public test có thể hơi khác, việc xuất hiện một số file dưới 2ph mình cũng thấy hơi ngờ ngợ. Nhưng kệ cứ tin vào val_acc trên CV của mình và đợi kết quả cuối cùng, cũng may là vẫn TOP1 ^^.
 
 Vì mình dành thời gian 3 tuần cho cuộc thi landmark nên chỉ dành đúng 3 ngày cho eda và train cho bài toán music, muốn thêm thì hết thời gian nên chịu. Nếu muốn improve accuracy thì mọi người có thể thử thêm mfcc và thêm base model.
 
