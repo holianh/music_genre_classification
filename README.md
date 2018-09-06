@@ -62,6 +62,6 @@ Kết quả LB của tập publict test là 0.81593
 
 Sau khi có tập private test thì final LB là 0.70144. Mình nghĩ distribution của bộ private và public test có thể hơi khác, việc xuất hiện một số file dưới 2ph mình cũng thấy hơi ngờ ngợ. Nhưng kệ cứ tin vào val_acc trên CV của mình và đợi kết quả cuối cùng, cũng may là vẫn TOP1 ^^.
 
-Vì mình dành thời gian 3 tuần cho cuộc thi landmark nên chỉ dành đúng 3 ngày cho eda và train cho bài toán music, muốn thêm thì hết thời gian nên chịu. Nếu muốn improve accuracy thì mọi người có thể thử thêm mfcc và thêm base model.
+Vì mình dành thời gian 2 tuần cho cuộc thi landmark nên chỉ dành đúng 3 ngày cho eda và train cho bài toán music, muốn thêm thì hết thời gian nên chịu. Nếu muốn improve accuracy thì mọi người có thể thử thêm mfcc và thêm base model.
 
 Nếu thấy có ích thì cho mình một *. Tạm biệt và hẹn gặp lại ở cuộc thi sau (⊙_⊙)
