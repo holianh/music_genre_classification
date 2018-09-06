@@ -47,7 +47,7 @@ Lúc này LB là 0.802 có nghĩa predict trên bộ public test có độ chín
 
 Predict cho cả 3 tập train + pseudo test, validation, public test trên các ảnh nhỏ, gom lại tương ứng với file lớn, thu được một 3 matrix có shape: (train_size_pseudo_size)x10, valid_sizex10, test_sizex10. Xếp chồng kết quả của 6 model theo chiều ngang được 3 matrix (train_size_pseudo_size)x6x10, valid_sizex6x10, test_sizex6x10.
 
-- Tạo 2 model cnn với input shape là 6x10, output shape là 1x10 [1 thằng thì thêm một vài lớp skip connection cho khác với thằng còn lại], gọi 2 thằng này là cnn_stacking1 và cnn_stacking2
+- Tạo 2 model cnn với input shape là 6x10, output shape là 1x10 [1 thằng thì thêm một vài lớp skip connection cho khác với thằng còn lại], gọi 2 thằng này là cnn_stacking1 và cnn_stacking2. Accuracy của tập valid của mỗi model cnn stacking tầm 0.82 cho mỗi fold 2,3,4
 
 - Tạo 1 lgb model với input shape là 1x60, output shape là 1x10. Gọi bé này là lgb_stacking1
 
