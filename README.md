@@ -1,19 +1,26 @@
 # music_genre_classification
-##https://challenge.zalo.ai/portal/music/final-leaderboard
+https://challenge.zalo.ai/portal/music/final-leaderboard
 
 # Make dir
-##$ chmod u+x make_directory.sh && ./make_directory.sh
+$ chmod u+x make_directory.sh && ./make_directory.sh
 
 # Download dataset
-##Tải file audio của tập train, public test và private test bỏ vào thư mục datasets/train datasets/test datasets/private_test
+Tải file audio của tập train, public test và private test bỏ vào thư mục datasets/train datasets/test datasets/private_test
 
 # Extract mel spectrogram features
-##- Với tập train, mỗi file audio 2ph tách thành các đoạn 20s: với các class 1,9,10 do số lượng samples ít nên mình dịch từng đoạn 5s (có nghĩa 1 file 2ph tách thành 21 đoạn 20s), các class còn lại dịch từng đoạn 10s (1 file 2ph tách thành 11 file 20s). Mỗi đoạn 20s mình sẽ tính toán melspectrogram và lưu thành ảnh 512x512x3 
-##- Tham khảo [https://librosa.github.io/librosa/generated/librosa.feature.melspectrogram.html]
-##Với tập public test, tương tự chia file 2ph thành các đoạn 20s, độ dịch 5s, tính toán melspectrogram và lưu thành ảnh 512x512x3. Với tập private test, do có một số file có độ dài dưới 2ph nên mình sẽ concatenate cho đến khi chiều dài >= 2ph, sau đó cắt đúng độ dài 2ph, tương tự chia thành 11 đoạn 20s, dich 10s, lưu thảnh ảnh 512x512x3. Sử dụngtest time augmentation là horizontal flip, tổng cộng 1 file 2ph sẽ được tách thành 22 file nhỏ, predict cho 22 file này. Kết quả predict file 2ph sẽ là trung bình của kết quả predict 22 file nhỏ 20s.
-##- Để tính melspectrogram và lưu thành fiel ành đơn giản chạy 2 file trong thư mục src
-## $ python audio2img.py 
-## $ python audio2img_private_testset.py
+
+- Với tập train, mỗi file audio 2ph tách thành các đoạn 20s: với các class 1,9,10 do số lượng samples ít nên mình dịch từng đoạn 5s (có nghĩa 1 file 2ph tách thành 21 đoạn 20s), các class còn lại dịch từng đoạn 10s (1 file 2ph tách thành 11 file 20s). Mỗi đoạn 20s mình sẽ tính toán melspectrogram và lưu thành ảnh 512x512x3 
+
+- Tham khảo [https://librosa.github.io/librosa/generated/librosa.feature.melspectrogram.html]
+
+- Với tập public test, tương tự chia file 2ph thành các đoạn 20s, độ dịch 5s, tính toán melspectrogram và lưu thành ảnh 512x512x3. Với tập private test, do có một số file có độ dài dưới 2ph nên mình sẽ concatenate cho đến khi chiều dài >= 2ph, sau đó cắt đúng độ dài 2ph, tương tự chia thành 11 đoạn 20s, dich 10s, lưu thảnh ảnh 512x512x3. Sử dụngtest time augmentation là horizontal flip, tổng cộng 1 file 2ph sẽ được tách thành 22 file nhỏ, predict cho 22 file này. Kết quả predict file 2ph sẽ là trung bình của kết quả predict 22 file nhỏ 20s.
+
+- Để tính melspectrogram và lưu thành fiel ành đơn giản chạy 2 file trong thư mục src
+
+$ python audio2img.py 
+
+$ python audio2img_private_testset.py
+
 # Cross validation
 ##Chia tập trainset thành 5 fold (chú ý là chia với tập audio 2ph). Ững với mỗi file audio sẽ sủ dụng 21 file ảnh (class 1,9,10) hoặc 11 file ảnh (class còn lại). Mình sử dụng 6 pretrain model trên tập image net: densenet169, densenet201, inception_resnet_v2, inception_v3, resnet50, xception. Warmup 1 epoch đầu, sử dụng augmentation horizontal flip.
 ##Để generate ra 5 fole chạy file trong thư mục src
